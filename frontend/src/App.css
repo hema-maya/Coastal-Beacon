@@ -1,0 +1,645 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap');
+@import "leaflet/dist/leaflet.css";
+.App {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'roboto', serif;
+  font-style: oblique;
+  color:#0e0770;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #0e0770;
+  min-height: 200vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: transparent;
+
+}
+
+.beach-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 40px;
+  min-height: 100vh;
+  background:transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* added so video absolute position works */
+  z-index: 1; 
+}
+
+.beach-card {
+  position: relative;
+  top:200px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(79, 84, 69, 0.2);
+  transition: all 0.3s ease;
+  padding: 50px;
+  text-align: center;
+  cursor: pointer;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.beach-card.marina:hover {
+  background-image: url('images/a.jpg'); 
+  background-color: rgba(255, 255, 255, 0.8); 
+  color: #000;
+}
+
+.beach-card.kovalam:hover {
+  background-image: url('images/3.jpg');
+  background-color: rgba(255, 255, 255, 0.8); 
+  color: #000;
+}
+.beach-card.elliot:hover {
+  background-image: url('images/b.jpeg'); 
+  background-color: rgba(255, 255, 255, 0.8); 
+  color: #000;
+}
+.beach-card.kanyakumari:hover {
+  background-image: url('images/c.jpeg'); 
+  background-color: rgba(255, 255, 255, 0.8); 
+  color: #000;
+}
+.beach-card.rameswaram:hover {
+  background-image: url('images/d.jpeg');
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+}
+
+.beach-card h2 {
+  margin: 0;
+  font-size: 35px;
+  color: #000000;
+  font-weight: 600;
+  font-style: normal;
+  font-family: 'MedievalSharp', cursive;
+
+}
+
+.beach-card::before {
+  content: '';
+  position: absolute;
+  top: 10px; left: 10px;
+  right: 10px; bottom: 10px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.05);
+  z-index: -1;
+}
+
+.beach-card:hover {
+  background-color: #fbf4d1;
+  box-shadow: 0 0 20px 10px #3488a9fe;
+  transform: translateY(-5px) scale(1.03);
+ cursor: pointer;
+
+}
+.marina-container {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+.banner1 {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+
+}
+
+.overlay1 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #ffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+.banner2 {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.banner3 {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.banner4 {
+   position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.banner5 {
+ position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+.overlay2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #ffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1;
+}
+.overlay3 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #ffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1;
+}
+.overlay4 {
+  width: 100%;
+  height: 100%;
+  color: #000000;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center text */
+  align-items: center;
+  padding: 0 20px;
+}
+.overlay5 {
+  width: 100%;
+  height: 100%;
+  color: #000000;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center text */
+  align-items: center;
+  padding: 0 20px;
+}
+.overlay1 h1 {
+position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  font-family: 'Playfair+Display', serif;
+  font-style: italic;
+  font-size: 7rem;
+  font-weight: 900;
+  text-align: center;
+
+  /* Transparent text effect */
+  background: rgba(22, 127, 143, 0.2); /* subtle base for browsers without clip support */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Stroke outline for readability */
+  -webkit-text-stroke: 2px white;
+
+  /* Shadow to make it pop */
+  text-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+
+  letter-spacing: 2px;
+  z-index: 2;
+}
+.overlay2 h1 {
+position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  font-family: 'Playfair+Display', serif;
+  font-style: italic;
+  font-size: 7rem;
+  font-weight: 900;
+  text-align: center;
+
+  /* Transparent text effect */
+  background: rgba(22, 127, 143, 0.2); /* subtle base for browsers without clip support */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Stroke outline for readability */
+  -webkit-text-stroke: 2px white;
+
+  /* Shadow to make it pop */
+  text-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+
+  letter-spacing: 2px;
+  z-index: 2;
+}
+.overlay3 h1 {
+position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  font-family: 'Playfair+Display', serif;
+  font-size: 7rem;
+  font-weight: 900;
+  text-align: center;
+
+  /* Transparent text effect */
+  background: rgba(222, 242, 245, 0.2); /* subtle base for browsers without clip support */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Stroke outline for readability */
+  -webkit-text-stroke: 2px white;
+
+  /* Shadow to make it pop */
+  text-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+
+  letter-spacing: 2px;
+  z-index: 2;
+}
+.overlay4 h1 {
+position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  font-family: 'Playfair+Display', serif;
+  font-size: 7rem;
+  font-weight: 900;
+  text-align: center;
+
+  /* Transparent text effect */
+  background: rgba(222, 242, 245, 0.2); /* subtle base for browsers without clip support */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Stroke outline for readability */
+  -webkit-text-stroke: 2px white;
+
+  /* Shadow to make it pop */
+  text-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+
+  letter-spacing: 2px;
+  z-index: 2;
+}
+.overlay5 h1 {
+position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  font-family: 'Playfair+Display', serif;
+  font-size: 8rem;
+  font-weight: 900;
+  text-align: center;
+
+  /* Transparent text effect */
+  background: rgba(222, 242, 245, 0.2); /* subtle base for browsers without clip support */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Stroke outline for readability */
+  -webkit-text-stroke: 2.5px white;
+
+  /* Shadow to make it pop */
+  text-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+
+  letter-spacing: 2px;
+  z-index: 2;
+}
+.overlay1 p {
+  position: absolute;
+  top: 240px;
+  left: center;
+  color:rgba(3, 3, 25, 0.733);
+  font-family: 'Monotype Corsiva', sans-serif;
+  font-size: 5rem;
+  animation: fadeInUp 1s ease-in-out;
+}
+.overlay2 p {
+  position: absolute;
+  top: 350px;
+  left: center;
+  color:rgba(3, 3, 25, 0.733);
+  font-family: 'Monotype Corsiva', sans-serif;
+  font-size: 4rem;
+  animation: fadeInUp 1s ease-in-out;
+}
+.overlay3 p {
+ position: absolute;
+  top: 350px;
+  left: center;
+  color:rgba(3, 3, 25, 0.733);
+  font-family: 'Monotype Corsiva', sans-serif;
+  font-size: 4rem;
+  animation: fadeInUp 1s ease-in-out;
+}
+.overlay4 p {
+  position: absolute;
+  top: 330px;
+  left: center;
+  font-family: 'Monotype Corsiva', sans-serif;
+  font-size: 2.5rem;
+  animation: fadeInUp 1s ease-in-out;
+}
+.overlay5 p{
+  position: absolute;
+  top: 320px;
+  left: center;
+  font-family: 'Monotype Corsiva', sans-serif;
+  font-size: 2.5rem;
+  animation: fadeInUp 1s ease-in-out;
+}
+.section {
+  max-width: 100%;
+  margin: 40px auto;
+  padding: 0 20px;
+
+}
+
+.section h2 {
+  font-size: 2rem;
+  color: #0077b6;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+.description p {
+  font-size: 1.4rem;
+  line-height: 2.2;
+  color:#000;
+  font-family: 'roboto', serif;
+  border-left: 7px solid #0096c7;
+  padding-left: 10px;
+  text-align: justify;
+  
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  border-left: 7px solid #0096c7;
+  
+}
+
+.activity-card {
+  background-color: #e0f4ff;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  height: 120px; /* Increase height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center text vertically */
+  align-items: center; /* Center text horizontally */
+  font-size: 1.5rem;
+  text-align: center;
+  transition: 0.3s ease;
+  font-style: normal;
+  color: #292727;
+}
+
+.activity-card:hover {
+  background-color: #caf0f8;
+  transform: translateY(-5px);
+}
+
+.gallery-grid {
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-left: 7px solid #0096c7;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 420px;
+  height: 310px;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Front card stays in place */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.6s ease-in-out;
+}
+/* Front card image */
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transform: scale(1);
+  transition: transform 0.6s ease-in-out, filter 0.3s ease-in-out;
+}
+
+/* Blur the image while hovering on the card */
+.flip-card:hover .flip-card-front img {
+  filter: blur(4px); /* image blurs immediately */
+  transform: scale(1.05); /* optional zoom */
+}
+
+
+/* Back card text hidden initially */
+.flip-card-back {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 20px;
+  font-size: 2rem;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: translateY(100%) scale(1);
+  opacity: 0;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  border-radius: 10px;
+  position: relative; /* ensures ::after positions inside */
+}
+
+.flip-card-back p {
+  position: relative;
+  margin: 0;
+  font-size: 30px;
+  text-align: left;
+  font-style: italic;
+  top: -50px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  z-index: 2; /* keep text above the line */
+  width: 90%; /* or 100% */
+  box-sizing: border-box; /* include padding in width */
+  word-wrap: break-word; /* wrap long words */
+  overflow-wrap: break-word; /* fallback for older browsers */
+}
+
+/* Line at the bottom */
+.flip-card-back::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;   /* adjust distance from bottom */
+  left: 20px;     /* respect card padding */
+  right: 20px;
+  width: 0;
+  height: 3px;
+  background: #e7ebec;
+  transition: width 0.6s ease-in-out;
+  border-radius: 2px;
+}
+
+/* Animate on hover */
+.flip-card:hover .flip-card-back::after {
+  width: calc(100% - 40px); /* full width minus padding */
+}
+
+
+/* Hover effect: slide text up and show line */
+.flip-card:hover .flip-card-back {
+  transform: translateY(0) scale(1.03);
+  opacity: 1;
+}
+
+.flip-card:hover .flip-card-back::after {
+  width: calc(100% - 40px); /* full width minus padding */
+}
+
+
+
+.footer {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 20px;
+  background-color: #eaf4fa;
+  margin-top: 40px;
+}
+
+.footer a {
+  color: #0077b6;
+  text-decoration: none;
+}
+.background-video {
+  position: fixed; /* stays in background */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.page-title {
+  position: absolute;
+  top: 50px; /* move it into viewport */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(1, 12, 92);
+  text-shadow: 3px 3px 8px rgba(6, 112, 158, 0.7);
+  z-index: 10; /* ensures it’s above video and cards */
+}
