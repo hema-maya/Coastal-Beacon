@@ -9,7 +9,7 @@ const RameswaramBeach = () => {
         Your browser does not support the video tag.
       </video>
     <h1>Rameswaram Beach</h1>
-    <p>Rameswaram, Tamil Nadu, India</p>
+    <p>Rameswaram, Tamil Nadu</p>
   </div>
 </header>
 
