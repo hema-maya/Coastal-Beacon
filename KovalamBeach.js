@@ -9,7 +9,7 @@ const KovalamBeach = () => {
         Your browser does not support the video tag.
       </video>
     <h1>Kovalam Beach</h1>
-    <p>Chennai, Tamil Nadu, India</p>
+    <p>Chennai, Tamil Nadu</p>
   </div>
 </header>
 
