@@ -78,6 +78,8 @@ Kanyakumari Beach is not just about natural beauty but also holds deep cultural 
 
 
       <footer className="footer">
+        📍Kanyakumari Beach ; Kanyakumari, Tamil Nadu, India · Indian Ocean, Arabian Sea, Bay of Bengal · Coastal, rocky and sandy beach
+
         </footer>
     </div>
   );
