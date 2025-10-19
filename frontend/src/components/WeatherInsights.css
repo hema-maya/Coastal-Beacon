@@ -1,0 +1,79 @@
+.insights-container {
+  padding: 30px 8%;
+  background: #f5f9ff;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: #0b2d6f;
+}
+
+.insights-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.recommendation-box {
+  background: #e3f2fd;
+  border-left: 6px solid #1565c0;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.weather-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.weather-table th {
+  background: #1565c0;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.weather-table td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.safety-cell.safe {
+  background: #c8e6c9;
+  color: #2e7d32;
+  font-weight: 600;
+}
+.safety-cell.caution {
+  background: #fff8e1;
+  color: #8d6e00;
+  font-weight: 600;
+}
+.safety-cell.danger {
+  background: #ffcdd2;
+  color: #c62828;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .chart-wrapper {
+    padding: 10px;
+  }
+  .weather-table th,
+  .weather-table td {
+    font-size: 0.8rem;
+  }
+}
