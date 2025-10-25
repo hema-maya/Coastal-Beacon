@@ -4,13 +4,14 @@ import "./Home.css";
 import logo from "./logo.png";
 import about from "./pic2.jpg";
 import backgroundVideo from "./background.mp4";
+import { FaMapMarkedAlt } from "react-icons/fa"; // Map icon
 
 function Home() {
   const navigate = useNavigate();
 
   // ---------- AUTH STATES ----------
-  const [isLoggedIn, setIsLoggedIn] = useState(false);  // Track login state
-  const [showProfileDropdown, setShowProfileDropdown] = useState(false); // For dropdown
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
@@ -38,9 +39,21 @@ function Home() {
   const [newPassword, setNewPassword] = useState("");
 
   const questionSets = [
-    ["What is your favorite food?", "What is your favorite color?", "Which is your favorite travel destination?"],
-    ["Which sport do you enjoy watching the most?", "What is your favorite season?", "What type of music do you prefer?"],
-    ["Do you prefer tea or coffee?", "What is your favorite hobby?", "Which book has had the most impact on you?"]
+    [
+      "What is your favorite food?",
+      "What is your favorite color?",
+      "Which is your favorite travel destination?",
+    ],
+    [
+      "Which sport do you enjoy watching the most?",
+      "What is your favorite season?",
+      "What type of music do you prefer?",
+    ],
+    [
+      "Do you prefer tea or coffee?",
+      "What is your favorite hobby?",
+      "Which book has had the most impact on you?",
+    ],
   ];
 
   // ---------- FETCH USERS ----------
@@ -63,7 +76,7 @@ function Home() {
     setUsernameError(
       validateUsername(value)
         ? ""
-        : "Username must be at least 8 characters, no underscores, and contain a special character."
+        : "Username must be at least 8 characters and contain a special character."
     );
   };
 
@@ -71,7 +84,9 @@ function Home() {
     const value = e.target.value;
     setMobileNumber(value);
     setMobileNumberError(
-      validateMobileNumber(value) ? "" : "Mobile number must contain exactly 10 digits."
+      validateMobileNumber(value)
+        ? ""
+        : "Mobile number must contain exactly 10 digits."
     );
   };
 
@@ -84,16 +99,15 @@ function Home() {
   // ---------- LOGIN ----------
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    // Here you can validate credentials with backend if needed
     alert("Login successful!");
-    setIsLoggedIn(true);       // ✅ change state to logged in
-    setIsLoginOpen(false);     // close login modal
+    setIsLoggedIn(true);
+    setIsLoginOpen(false);
     e.target.reset();
   };
 
   // ---------- LOGOUT ----------
   const handleLogout = () => {
-    setIsLoggedIn(false);      // ✅ log out
+    setIsLoggedIn(false);
     setShowProfileDropdown(false);
     alert("Logged out successfully!");
   };
@@ -102,14 +116,8 @@ function Home() {
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     if (!usernameError && !mobileNumberError && !emailError) {
-      setUsername("");
-      setMobileNumber("");
-      setEmail("");
-      setPassword("");
-
       const randomSetIndex = Math.floor(Math.random() * questionSets.length);
       setQuestions(questionSets[randomSetIndex]);
-
       setStep(2);
     } else {
       alert("Please correct the errors before submitting.");
@@ -166,169 +174,222 @@ function Home() {
 
   return (
     <div className="home-container">
-      {/* Background Video */}
+      {/* === Background Video === */}
       <div className="video-background">
         <video autoPlay loop muted className="video">
           <source src={backgroundVideo} type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
         <div className="video-overlay"></div>
+        <div className="center-title">
+          <h2>Proactive Coastal and Tourist Information</h2>
+          <h2>Welcome to Coastal Beacon</h2>
+          <h2>
+            <span style={{ color: "#00bfff" }}>Your Journey, Our Insights</span>
+          </h2>
+        </div>
       </div>
 
-      {/* Header */}
+      {/* === Header === */}
       <header className="header">
-        <div className="coastal-beacon-logo">
-          <img src={logo} alt="Coastal Beacon Logo" className="logo" />
-          <h1 className="logo-text">Coastal Beacon</h1>
-        </div>
+  <div className="coastal-beacon-logo">
+    <img src={logo} alt="Coastal Beacon Logo" className="logo" />
+    <h1 className="logo-text">Coastal Beacon</h1>
+  </div>
 
-        <div className="top-right-links">
-          <span className="link home">Home</span>
+  <div className="top-right-links">
+    <span className="link home">Home</span>
 
-          {/* ✅ Conditional rendering */}
-          {!isLoggedIn ? (
-            <span className="link login" onClick={() => setIsLoginOpen(true)}>
-              Login
-            </span>
-          ) : (
-            <div className="profile-container">
-              <span
-                className="link profile"
-                onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-              >
-                👤 Profile
-              </span>
-
-              {showProfileDropdown && (
-                <div className="dropdown-menu">
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Sign Up button visible only if not logged in */}
-          {!isLoggedIn && (
-            <span
-              className="link signup"
-              onClick={() => {
-                setIsSignupOpen(true);
-                setStep(1);
-                setCurrentQ(0);
-                setAnswers([]);
-                setAnswer("");
-              }}
-            >
-              Sign Up
-            </span>
-          )}
-        </div>
-      </header>
-
-      {/* Center Title */}
-      <div className="center-title">
-        <h2>Proactive Coastal and Tourist Information</h2>
-        <h2>Welcome to Coastal Beacon</h2>
-        <h2><span style={{ color: 'blue' }}>Your Journey, Our Insights</span></h2>
+    {!isLoggedIn ? (
+      <span className="link login" onClick={() => setIsLoginOpen(true)}>
+        Login
+      </span>
+    ) : (
+      <div className="profile-container">
+        <span
+          className="link profile"
+          onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+        >
+          👤 Profile
+        </span>
+        {showProfileDropdown && (
+          <div className="dropdown-menu">
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        )}
       </div>
+    )}
 
-      {/* About Section */}
+    {!isLoggedIn && (
+      <span
+        className="link signup"
+        onClick={() => {
+          setIsSignupOpen(true);
+          setStep(1);
+          setCurrentQ(0);
+          setAnswers([]);
+          setAnswer("");
+        }}
+      >
+        Sign Up
+      </span>
+    )}
+
+    {/* 🆕 Feedback Button */}
+    <span
+      className="link feedback"
+      onClick={() => navigate("/feedback")}
+    >
+      Feedback
+    </span>
+  </div>
+</header>
+
+
+      {/* === About Section === */}
       <section className="about-section">
         <div className="about-text">
           <h2>About Our Project</h2>
-          <p>Coastal Beacon provides proactive coastal and tourist information. Our mission is to keep travelers safe and informed with real-time updates.</p>
-          <p>With innovation and technology, we bring you accurate data about weather, safety, and cultural highlights while exploring coastal areas.</p>
-
-          {/* Explore Button */}
-          <button
-            className="explore-btn"
-            onClick={() => navigate("/beaches")}
-          >
-            Explore
-          </button>
-
-          {/* Map View Button */}
-          <button
-            className="map-view-btn"
-            onClick={() => navigate("/map")}
-          >
-            Map View
-          </button>
+          <p>
+            <strong>Coastal Beacon</strong> provides proactive coastal and tourist
+            information. Our mission is to keep travelers safe and informed with
+            real-time updates.
+          </p>
+          <p>
+            With innovation and technology, we bring you accurate data about
+            weather, safety, and cultural highlights while exploring coastal areas.
+          </p>
+          <div className="button-group">
+            <button className="explore-btn" onClick={() => navigate("/beaches")}>
+              Explore Beaches
+            </button>
+            <button className="insights-btn" onClick={() => navigate("/insights")}>
+              View Insights
+            </button>
+          </div>
         </div>
         <div className="about-image">
           <img src={about} alt="About Coastal Beacon" />
         </div>
       </section>
 
-      {/* Users Section */}
-      <section className="users-section">
-        <h2>Registered Users (from MySQL)</h2>
-        <ul>
-          {users.map((u) => (
-            <li key={u.id}>{u.username} — {u.email}</li>
-          ))}
-        </ul>
-      </section>
+      {/* === Floating Map Icon === */}
+      <div
+        className="floating-map-icon"
+        onClick={() => navigate("/map")}
+        title="View Tamil Nadu Map"
+      >
+        <FaMapMarkedAlt size={30} />
+      </div>
 
-      {/* LOGIN Modal */}
+      {/* === Login Modal === */}
       {isLoginOpen && (
         <div className="login-dialog">
-          <div className="dialog-content glow-border">
-            <button className="close-button" onClick={() => setIsLoginOpen(false)}>X</button>
-            <h2>Login Page</h2>
+          <div className="dialog-content">
+            <button
+              className="close-button"
+              onClick={() => setIsLoginOpen(false)}
+            >
+              ×
+            </button>
+            <h2>Login</h2>
             <form onSubmit={handleLoginSubmit}>
-              <label>
-                Username:<input type="text" required />
-              </label>
-              <label>
-                Password:<input type="password" required />
-              </label>
+              <label>Username:</label>
+              <input type="text" required />
+              <label>Password:</label>
+              <input type="password" required />
               <button type="submit">Login</button>
               <div className="dialog-links">
-                <a href="#" onClick={() => { setIsSignupOpen(true); setIsLoginOpen(false); setStep(1); }}>Create an account</a>
+                <a
+                  href="#"
+                  onClick={() => {
+                    setIsSignupOpen(true);
+                    setIsLoginOpen(false);
+                    setStep(1);
+                  }}
+                >
+                  Create an account
+                </a>
                 <br />
-                <a href="#" onClick={() => { setIsForgotPasswordOpen(true); setIsLoginOpen(false); }}>Forgot Password?</a>
+                <a
+                  href="#"
+                  onClick={() => {
+                    setIsForgotPasswordOpen(true);
+                    setIsLoginOpen(false);
+                  }}
+                >
+                  Forgot Password?
+                </a>
               </div>
             </form>
           </div>
         </div>
       )}
 
-      {/* SIGNUP Modal */}
+      {/* === Signup Modal === */}
       {isSignupOpen && (
         <div className="login-dialog">
-          <div className="dialog-content glow-border">
-            <button className="close-button" onClick={() => setIsSignupOpen(false)}>X</button>
+          <div className="dialog-content">
+            <button
+              className="close-button"
+              onClick={() => setIsSignupOpen(false)}
+            >
+              ×
+            </button>
             <h2>Sign Up</h2>
             {step === 1 && (
               <form onSubmit={handleSignupSubmit}>
-                <label>
-                  Username:
-                  <input type="text" value={username} onChange={handleUsernameChange} required />
-                  {usernameError && <p className="error-message">{usernameError}</p>}
-                </label>
-                <label>
-                  Mobile Number:
-                  <input type="text" value={mobileNumber} onChange={handleMobileNumberChange} required />
-                  {mobileNumberError && <p className="error-message">{mobileNumberError}</p>}
-                </label>
-                <label>
-                  Email:
-                  <input type="email" value={email} onChange={handleEmailChange} required />
-                  {emailError && <p className="error-message">{emailError}</p>}
-                </label>
-                <label>
-                  Password:
-                  <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                </label>
-                <button type="submit">Submit</button>
+                <label>Username:</label>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={handleUsernameChange}
+                  required
+                />
+                {usernameError && (
+                  <p className="error-message">{usernameError}</p>
+                )}
+
+                <label>Mobile Number:</label>
+                <input
+                  type="text"
+                  value={mobileNumber}
+                  onChange={handleMobileNumberChange}
+                  required
+                />
+                {mobileNumberError && (
+                  <p className="error-message">{mobileNumberError}</p>
+                )}
+
+                <label>Email:</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
+                {emailError && <p className="error-message">{emailError}</p>}
+
+                <label>Password:</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+
+                <button type="submit">Next</button>
               </form>
             )}
             {step === 2 && (
               <div className="question-step">
                 <h3>Answer the Questions</h3>
                 <p>{questions[currentQ]}</p>
-                <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} required />
+                <input
+                  type="text"
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  required
+                />
                 <button onClick={handleAnswer}>
                   {currentQ + 1 === questions.length ? "Submit" : "Next"}
                 </button>
@@ -344,21 +405,32 @@ function Home() {
         </div>
       )}
 
-      {/* FORGOT PASSWORD Modal */}
+      {/* === Forgot Password Modal === */}
       {isForgotPasswordOpen && (
         <div className="login-dialog">
-          <div className="dialog-content glow-border">
-            <button className="close-button" onClick={() => setIsForgotPasswordOpen(false)}>X</button>
+          <div className="dialog-content">
+            <button
+              className="close-button"
+              onClick={() => setIsForgotPasswordOpen(false)}
+            >
+              ×
+            </button>
             <h2>Reset Password</h2>
             <form onSubmit={handleResetSubmit}>
-              <label>
-                Old Password:
-                <input type="password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} required />
-              </label>
-              <label>
-                New Password:
-                <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
-              </label>
+              <label>Old Password:</label>
+              <input
+                type="password"
+                value={oldPassword}
+                onChange={(e) => setOldPassword(e.target.value)}
+                required
+              />
+              <label>New Password:</label>
+              <input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+              />
               <button type="submit">Reset</button>
             </form>
           </div>
